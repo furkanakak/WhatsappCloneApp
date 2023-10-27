@@ -126,11 +126,15 @@ fun ChatScreen(viewModel: ChatScreenViewModel = hiltViewModel(), id : Int, popBa
 fun BottomMessage(modifier : Modifier) {
     Row(modifier = modifier
         .fillMaxWidth()
+        .clip(RoundedCornerShape(16.dp))
         .padding(end = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween) {
         Row(modifier = Modifier
             .weight(1f)
-            .background(top_background),Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
+            .background(top_background,RoundedCornerShape(16.dp))
+
+            ,Arrangement.Center, verticalAlignment = Alignment.CenterVertically)
+        {
            IconButton(onClick = {}) {
                Icon(modifier = Modifier.size(24.dp), imageVector = Icons.Default.Face, contentDescription = "search", tint = Color.LightGray)
            }
@@ -157,6 +161,7 @@ fun BottomMessage(modifier : Modifier) {
                 Icon(modifier = Modifier.size(24.dp), painter = painterResource(id = R.drawable.ic_camera), contentDescription = "search", tint = Color.LightGray)
             }
 
+
         }
         Spacer(Modifier.width(8.dp))
         Box(
@@ -164,6 +169,7 @@ fun BottomMessage(modifier : Modifier) {
                 .align(Alignment.CenterVertically)
                 .clip(RoundedCornerShape(16.dp))
                 .background(md_theme_dark_onPrimary)
+
         ) {
             IconButton(onClick = {}) {
                 Icon(
