@@ -1,0 +1,124 @@
+{
+  ConstraintSets: {
+    start: {
+
+      back_arrow_pic : {
+        width: 24,
+        height: 24,
+        start: ['parent', 'start', 16],
+        top: ['parent', 'top', 16],
+        bottom: ['box', 'end', 16],
+      },
+
+      profile_pic: {
+        width: 40,
+        height: 40,
+        start: ['back_arrow_pic', 'end', 16],
+        top: ['parent', 'top', 8],
+        custom: {
+          background: '#08ff04'
+        }
+      },
+
+      username: {
+        top: ['back_arrow_pic', 'top'],
+        bottom: ['back_arrow_pic', 'bottom'],
+        start: ['profile_pic', 'end', 16],
+        alpha: '1'
+      },
+      box: {
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        top: ['parent', 'top'],
+
+        alpha: '1',
+        custom: {
+          background: '#232C34'
+        }
+      },
+
+      more_pic : {
+        width: 24,
+        height: 24,
+        end: ['parent', 'end', 16],
+        top: ['parent', 'top', 16],
+        bottom: ['box', 'end', 16]
+      }
+
+    },
+    end: {
+      back_arrow_pic : {
+        width: 24,
+        height: 24,
+        start: ['parent', 'start', 16],
+        top: ['parent', 'top', 16]
+      },
+
+
+      profile_pic: {
+        width: 150,
+        height: 150,
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        top: ['parent', 'top', 16],
+        custom: {
+          background: '#FFFFFF'
+        }
+      },
+      username: {
+        top: ['back_arrow_pic', 'top'],
+        bottom: ['back_arrow_pic', 'bottom'],
+        start: ['parent', 'start',50],
+        alpha: '0'
+      },
+      box: {
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        top: ['parent', 'top'],
+        alpha: '0' ,
+        custom: {
+          background: '#00000000'
+        }
+      },
+
+      more_pic : {
+        width: 24,
+        height: 24,
+        end: ['parent', 'end', 16],
+        top: ['parent', 'top', 16]
+      }
+
+
+    }
+  },
+  Transitions: {
+    default: {
+      from: 'end',
+      to: 'start',
+      pathMotionArc: 'startHorizontal',
+      KeyFrames: {
+        KeyAttributes: [
+          {
+            target: ['profile_pic'],
+            frames: [0, 100]
+          },
+          {
+            target: ['username'],
+            frames: [0, 50, 100],
+            translationX: [0, 70, 0],
+          },
+          {
+            target: ['box'],
+            frames: [0, 100],
+            alpha: [0, 1]
+          },
+          {
+            target: ['username'],
+            frames: [0, 100],
+            alpha: [0, 1]
+          }
+        ]
+      }
+    }
+  }
+}
