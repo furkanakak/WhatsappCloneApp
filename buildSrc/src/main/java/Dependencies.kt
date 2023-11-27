@@ -101,7 +101,8 @@ object Libs {
     //constraintlayout
     const val constraintlayoutCompose = "androidx.constraintlayout:constraintlayout-compose:${Versions.constraintlayoutComposeVersion}"
 
-
+    //icon
+    const val icon = "androidx.compose.material:material-icons-extended:${Versions.composeUiVersion}"
 
 
 

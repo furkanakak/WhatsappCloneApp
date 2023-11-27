@@ -104,6 +104,8 @@ dependencies {
 
     //constraintlayout
     implementation(Libs.constraintlayoutCompose)
+    //icon
+    implementation(Libs.icon)
 
 
 }
