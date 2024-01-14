@@ -1,4 +1,4 @@
-package com.furkanakak.whatsappcloneapp.screen.mainscreen.main.composable
+package com.furkanakak.whatsappcloneapp.screen.mainscreen.main_pager_screen.composable
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Spacer

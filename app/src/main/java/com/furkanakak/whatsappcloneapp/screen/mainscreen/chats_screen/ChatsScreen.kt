@@ -1,4 +1,4 @@
-package com.furkanakak.whatsappcloneapp.screen.mainscreen.status
+package com.furkanakak.whatsappcloneapp.screen.mainscreen.chats_screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
@@ -11,14 +11,13 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.furkanakak.whatsappcloneapp.screen.chatscreen.ChatScreen
-import com.furkanakak.whatsappcloneapp.screen.mainscreen.status.composable.FriendsRow
+import com.furkanakak.whatsappcloneapp.screen.mainscreen.chats_screen.composable.FriendsRow
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
-fun StatusScreen(viewModel: StatusViewModel = hiltViewModel(),navigateToChatScreen : (Int) -> Unit) {
+fun ChatsScreen(viewModel: ChatsViewModel = hiltViewModel(), navigateToChatScreen : (Int) -> Unit) {
 
-    val data : MutableState<StatusState> = viewModel.stateFavorite
+    val data : MutableState<ChatsState> = viewModel.stateFavorite
 
 
     if(data.value.loading){

@@ -1,4 +1,4 @@
-package com.furkanakak.whatsappcloneapp.screen.mainscreen.chats
+package com.furkanakak.whatsappcloneapp.screen.mainscreen.status_screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -7,9 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun ChatsScreen() {
+fun StatusScreen() {
     Column(modifier = Modifier.fillMaxHeight()){
-        Text("ChatsScreen")
+        Text("StatusScreen")
     }
 
 }

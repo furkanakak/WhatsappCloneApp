@@ -1,7 +1,6 @@
-package com.furkanakak.whatsappcloneapp.screen.mainscreen.status
+package com.furkanakak.whatsappcloneapp.screen.mainscreen.chats_screen
 
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,10 +11,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class StatusViewModel @Inject constructor(private  val friendsUseCase: FriendsUseCase) : ViewModel(){
+class ChatsViewModel @Inject constructor(private  val friendsUseCase: FriendsUseCase) : ViewModel(){
 
-    private val _stateFavorite = mutableStateOf(StatusState())
-    val stateFavorite : MutableState<StatusState> = _stateFavorite
+    private val _stateFavorite = mutableStateOf(ChatsState())
+    val stateFavorite : MutableState<ChatsState> = _stateFavorite
 
     init {
         getChatData()
@@ -26,15 +25,15 @@ class StatusViewModel @Inject constructor(private  val friendsUseCase: FriendsUs
             when(result){
 
                 Resource.Loading -> {
-                    _stateFavorite.value = StatusState(loading = true)
+                    _stateFavorite.value = ChatsState(loading = true)
                 }
 
                 is Resource.Error -> {
-                    _stateFavorite.value = StatusState( error = result.errorMessage)
+                    _stateFavorite.value = ChatsState( error = result.errorMessage)
                 }
 
                 is Resource.Success -> {
-                    _stateFavorite.value = StatusState( success = result.data)
+                    _stateFavorite.value = ChatsState( success = result.data)
                 }
 
             }

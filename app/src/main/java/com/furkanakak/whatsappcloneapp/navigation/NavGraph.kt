@@ -8,11 +8,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.furkanakak.whatsappcloneapp.data.entity.FriendX
 import com.furkanakak.whatsappcloneapp.screen.chatscreen.ChatScreen
-import com.furkanakak.whatsappcloneapp.screen.mainscreen.main.MainScreen
-import com.furkanakak.whatsappcloneapp.screen.profilescreen.ProfileScreen
-import kotlinx.serialization.decodeFromString
+import com.furkanakak.whatsappcloneapp.screen.mainscreen.main_pager_screen.MainScreen
+import com.furkanakak.whatsappcloneapp.screen.profile_screen.ProfileScreen
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
@@ -41,7 +39,9 @@ fun NavGraph(navController: NavHostController) {
         }
 
         composable(route = "${Screen.ProfileScreen.route }/{selectedProfile}", arguments = listOf(navArgument("selectedProfile"){type = NavType.StringType})) {
-            ProfileScreen(selectedProfile = it.arguments?.getString("selectedProfile"))
+            ProfileScreen(selectedProfile = it.arguments?.getString("selectedProfile"), onBackClick = {
+                navController.popBackStack()
+            })
         }
 
 

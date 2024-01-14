@@ -1,8 +1,8 @@
-package com.furkanakak.whatsappcloneapp.screen.profilescreen
+package com.furkanakak.whatsappcloneapp.screen.profile_screen
 
 import android.util.Base64
-import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,7 +25,6 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -56,7 +55,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 @Composable
-fun ProfileScreen(selectedProfile : String?) {
+fun ProfileScreen(selectedProfile : String?, onBackClick : () -> Unit) {
     var profile by remember { mutableStateOf<FriendX?>(null)}
     var progress by remember { mutableStateOf(0f) }
     var notificationSwitch by remember { mutableStateOf(false) }
@@ -74,7 +73,7 @@ fun ProfileScreen(selectedProfile : String?) {
     }
 
     Column {
-        ProfileHeader(progress = scrollRatio,profile = profile)
+        ProfileHeader(progress = scrollRatio,profile = profile,onBackClick)
         Column(modifier = Modifier.verticalScroll(scrollState)) {
             Spacer(modifier = Modifier.height(130.dp))
             Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
@@ -222,7 +221,7 @@ fun ProfileScreen(selectedProfile : String?) {
 }
 @OptIn(ExperimentalMotionApi::class)
 @Composable
-fun ProfileHeader(progress: Float,profile : FriendX?) {
+fun ProfileHeader(progress: Float,profile : FriendX?,onBackClick : () -> Unit) {
     val name by remember { mutableStateOf(profile?.name?:"") }
     val context = LocalContext.current
     val motionScene = remember { context.resources.openRawResource(R.raw.motion_scene_profile).readBytes().decodeToString() }
@@ -245,7 +244,8 @@ fun ProfileHeader(progress: Float,profile : FriendX?) {
                     .layoutId("profile_pic")
             )
 
-            Icon(modifier = Modifier.layoutId("back_arrow_pic"), imageVector = Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.White)
+            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.White,
+                modifier = Modifier.layoutId("back_arrow_pic").clickable {onBackClick()})
             Icon(modifier = Modifier.layoutId("more_pic"), imageVector = Icons.Default.MoreVert, contentDescription = "More", tint = Color.White)
 
             Text(

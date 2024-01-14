@@ -1,4 +1,4 @@
-package com.furkanakak.whatsappcloneapp.screen.mainscreen.status.composable
+package com.furkanakak.whatsappcloneapp.screen.mainscreen.chats_screen.composable
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

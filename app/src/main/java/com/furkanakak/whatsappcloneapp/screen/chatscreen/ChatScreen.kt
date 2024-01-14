@@ -1,7 +1,6 @@
 package com.furkanakak.whatsappcloneapp.screen.chatscreen
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,9 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -44,10 +41,9 @@ import com.furkanakak.whatsappcloneapp.R
 import com.furkanakak.whatsappcloneapp.data.entity.Chatlog
 import com.furkanakak.whatsappcloneapp.data.entity.Friend
 import com.furkanakak.whatsappcloneapp.data.entity.FriendX
-import com.furkanakak.whatsappcloneapp.data.entity.Profile
 import com.furkanakak.whatsappcloneapp.screen.chatscreen.composable.ChatScreenAppBar
-import com.furkanakak.whatsappcloneapp.screen.mainscreen.main.composable.ChatItem
-import com.furkanakak.whatsappcloneapp.screen.mainscreen.status.StatusState
+import com.furkanakak.whatsappcloneapp.screen.mainscreen.main_pager_screen.composable.ChatItem
+import com.furkanakak.whatsappcloneapp.screen.mainscreen.chats_screen.ChatsState
 import com.furkanakak.whatsappcloneapp.ui.theme.md_theme_dark_onPrimary
 import com.furkanakak.whatsappcloneapp.ui.theme.top_background
 
@@ -56,7 +52,7 @@ import com.furkanakak.whatsappcloneapp.ui.theme.top_background
 @Composable
 fun ChatScreen(viewModel: ChatScreenViewModel = hiltViewModel(), id : Int, popBackStack : () -> Unit , navigateToProfile : (FriendX?) -> Unit) {
 
-    val data : MutableState<StatusState> = viewModel.stateFavorite
+    val data : MutableState<ChatsState> = viewModel.stateFavorite
     var selectedItem by remember{ mutableStateOf<Friend?>(null)}
     var selectedProfile by remember{ mutableStateOf<FriendX?>(null)}
     var chatList by remember { mutableStateOf<List<Chatlog>?>(null)}

@@ -1,4 +1,4 @@
-package com.furkanakak.whatsappcloneapp.screen.mainscreen.main
+package com.furkanakak.whatsappcloneapp.screen.mainscreen.main_pager_screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -17,10 +17,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.furkanakak.whatsappcloneapp.common.EnumAppBar
 import com.furkanakak.whatsappcloneapp.common.components.TopBarWithPager
-import com.furkanakak.whatsappcloneapp.screen.mainscreen.calls.CallsScreen
-import com.furkanakak.whatsappcloneapp.screen.mainscreen.chats.ChatsScreen
-import com.furkanakak.whatsappcloneapp.screen.mainscreen.main.composable.MainScreenAppBar
-import com.furkanakak.whatsappcloneapp.screen.mainscreen.status.StatusScreen
+import com.furkanakak.whatsappcloneapp.screen.mainscreen.calls_screen.CallsScreen
+import com.furkanakak.whatsappcloneapp.screen.mainscreen.status_screen.StatusScreen
+
+import com.furkanakak.whatsappcloneapp.screen.mainscreen.main_pager_screen.composable.MainScreenAppBar
+import com.furkanakak.whatsappcloneapp.screen.mainscreen.chats_screen.ChatsScreen
 
 
 @SuppressLint("UnrememberedMutableState", "UnusedMaterial3ScaffoldPaddingParameter")
@@ -29,7 +30,7 @@ import com.furkanakak.whatsappcloneapp.screen.mainscreen.status.StatusScreen
 fun MainScreen(navigateToChatScreen : (Int) -> Unit) {
 
     var selectedTopIndex by remember  { mutableStateOf(0)}
-    val list : List<String> = listOf("Status","Chat","Call")
+    val list : List<String> = listOf("Chats","Status","Call")
     val pagerState = rememberPagerState(initialPage = 0)
 
 
@@ -46,18 +47,20 @@ fun MainScreen(navigateToChatScreen : (Int) -> Unit) {
             TopBarWithPager(index = selectedTopIndex,list, clickItem = {})
             HorizontalPager(
                 state = pagerState,
-                pageCount = list.size ,
+                pageCount = list.size,
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)) {
                 when(selectedTopIndex){
-                    EnumAppBar.Status.value ->{
-                        StatusScreen(navigateToChatScreen = { id ->
+
+                    EnumAppBar.Chats.value ->{
+                        ChatsScreen(navigateToChatScreen = { id ->
                             navigateToChatScreen(id)})
                     }
-                    EnumAppBar.Chats.value ->{
-                        ChatsScreen()
+                    EnumAppBar.Status.value ->{
+                        StatusScreen()
                     }
+
                     EnumAppBar.Calls.value ->{
                         CallsScreen()
                     }

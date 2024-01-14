@@ -1,6 +1,5 @@
-package com.furkanakak.whatsappcloneapp.screen.mainscreen.main.composable
+package com.furkanakak.whatsappcloneapp.screen.mainscreen.main_pager_screen.composable
 
-import android.graphics.Paint.Style
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
