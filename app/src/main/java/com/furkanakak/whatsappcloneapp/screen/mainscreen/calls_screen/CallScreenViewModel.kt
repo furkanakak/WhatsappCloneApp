@@ -1,4 +1,4 @@
-package com.furkanakak.whatsappcloneapp.screen.chatscreen
+package com.furkanakak.whatsappcloneapp.screen.mainscreen.calls_screen
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -6,40 +6,40 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.furkanakak.whatsappcloneapp.common.Resource
 import com.furkanakak.whatsappcloneapp.domain.usecase.ChatScreenUseCase
+import com.furkanakak.whatsappcloneapp.domain.usecase.RecentUseCase
 import com.furkanakak.whatsappcloneapp.screen.mainscreen.chats_screen.ChatsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 @HiltViewModel
-class ChatScreenViewModel @Inject constructor(private  val chatScreenUseCase: ChatScreenUseCase) : ViewModel() {
-
-    private val _stateFavorite = mutableStateOf(ChatsState())
-    val stateFavorite : MutableState<ChatsState> = _stateFavorite
-
-
+class CallScreenViewModel @Inject constructor(private val regentScreenUseCase: RecentUseCase) : ViewModel() {
+    private val _stateRecent = mutableStateOf(RecentState())
+    val stateRecent : MutableState<RecentState> = _stateRecent
     init {
-        getChatData()
+        getRecentData()
     }
 
-    fun  getChatData() = viewModelScope.launch {
-        chatScreenUseCase.invoke().collect{result ->
+
+    fun  getRecentData() = viewModelScope.launch {
+        regentScreenUseCase.invoke().collect{result ->
             when(result){
 
                 Resource.Loading -> {
-                    _stateFavorite.value = ChatsState(loading = true)
+                    _stateRecent.value = RecentState(loading = true)
                 }
 
                 is Resource.Error -> {
-                    _stateFavorite.value = ChatsState( error = result.errorMessage)
+                    _stateRecent.value = RecentState( error = result.errorMessage)
                 }
 
                 is Resource.Success -> {
-                    _stateFavorite.value = ChatsState( success = result.data)
+                    _stateRecent.value = RecentState( success = result.data)
                 }
 
             }
 
         }
     }
+
+
 }

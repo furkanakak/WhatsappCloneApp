@@ -1,6 +1,8 @@
 package com.furkanakak.whatsappcloneapp.screen.mainscreen.main_pager_screen
 
 import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,6 +26,7 @@ import com.furkanakak.whatsappcloneapp.screen.mainscreen.main_pager_screen.compo
 import com.furkanakak.whatsappcloneapp.screen.mainscreen.chats_screen.ChatsScreen
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnrememberedMutableState", "UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

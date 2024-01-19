@@ -50,23 +50,26 @@ import com.furkanakak.whatsappcloneapp.ui.theme.top_background
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun ChatScreen(viewModel: ChatScreenViewModel = hiltViewModel(), id : Int, popBackStack : () -> Unit , navigateToProfile : (FriendX?) -> Unit) {
+fun ChatScreen(
+    viewModel: ChatScreenViewModel = hiltViewModel(),
+    id: Int,
+    popBackStack: () -> Unit,
+    navigateToProfile: (FriendX?) -> Unit
+) {
 
-    val data : MutableState<ChatsState> = viewModel.stateFavorite
-    var selectedItem by remember{ mutableStateOf<Friend?>(null)}
-    var selectedProfile by remember{ mutableStateOf<FriendX?>(null)}
-    var chatList by remember { mutableStateOf<List<Chatlog>?>(null)}
+    val data: MutableState<ChatsState> = viewModel.stateFavorite
+    var selectedItem by remember { mutableStateOf<Friend?>(null) }
+    var selectedProfile by remember { mutableStateOf<FriendX?>(null) }
+    var chatList by remember { mutableStateOf<List<Chatlog>?>(null) }
 
 
-    if(data.value.loading){
-        Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxHeight()){
+    if (data.value.loading) {
+        Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxHeight()) {
             CircularProgressIndicator()
         }
-    }
-    else if(data.value.error != null){
+    } else if (data.value.error != null) {
         Text(text = data.value.error!!)
-    }
-    else{
+    } else {
         selectedItem = data.value.success?.friends?.filter { it.id == id }?.get(0)
         chatList = selectedItem?.chatlog
     }
@@ -115,30 +118,40 @@ fun ChatScreen(viewModel: ChatScreenViewModel = hiltViewModel(), id : Int, popBa
     )
 
 
-
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomMessage(modifier : Modifier) {
-    Row(modifier = modifier
-        .fillMaxWidth()
-        .clip(RoundedCornerShape(16.dp))
-        .padding(end = 8.dp),
-        horizontalArrangement = Arrangement.SpaceBetween) {
-        Row(modifier = Modifier
-            .weight(1f)
-            .background(top_background,RoundedCornerShape(16.dp))
-
-            ,Arrangement.Center, verticalAlignment = Alignment.CenterVertically)
-        {
-           IconButton(onClick = {}) {
-               Icon(modifier = Modifier.size(24.dp), imageVector = Icons.Default.Face, contentDescription = "search", tint = Color.LightGray)
-           }
-            Spacer(Modifier.width(4.dp))
-            TextField(value ="", onValueChange = {},modifier = Modifier
+fun BottomMessage(modifier: Modifier) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .padding(end = 8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Row(
+            modifier = Modifier
                 .weight(1f)
-                .background(top_background),
-                    colors = TextFieldDefaults.textFieldColors(
+                .background(top_background, RoundedCornerShape(16.dp)),
+            Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        )
+        {
+            IconButton(onClick = {}) {
+                Icon(
+                    modifier = Modifier.size(24.dp),
+                    imageVector = Icons.Default.Face,
+                    contentDescription = "search",
+                    tint = Color.LightGray
+                )
+            }
+            Spacer(Modifier.width(4.dp))
+            TextField(
+                value = "", onValueChange = {}, modifier = Modifier
+                    .weight(1f)
+                    .background(top_background),
+                colors = TextFieldDefaults.textFieldColors(
                     Color.White,
                     cursorColor = Color.Transparent,
                     errorCursorColor = Color.Transparent,
@@ -148,13 +161,24 @@ fun BottomMessage(modifier : Modifier) {
                     unfocusedPlaceholderColor = Color.Transparent,
                     containerColor = top_background,
                     unfocusedIndicatorColor = Color.Transparent,
-                ))
+                )
+            )
             IconButton(onClick = {}) {
-                Icon(modifier = Modifier.size(24.dp), painter = painterResource(id = R.drawable.ic_attach), contentDescription = "search", tint = Color.LightGray)
+                Icon(
+                    modifier = Modifier.size(24.dp),
+                    painter = painterResource(id = R.drawable.ic_attach),
+                    contentDescription = "search",
+                    tint = Color.LightGray
+                )
             }
 
             IconButton(onClick = {}) {
-                Icon(modifier = Modifier.size(24.dp), painter = painterResource(id = R.drawable.ic_camera), contentDescription = "search", tint = Color.LightGray)
+                Icon(
+                    modifier = Modifier.size(24.dp),
+                    painter = painterResource(id = R.drawable.ic_camera),
+                    contentDescription = "search",
+                    tint = Color.LightGray
+                )
             }
 
 
@@ -179,5 +203,5 @@ fun BottomMessage(modifier : Modifier) {
     }
 
 
-    }
+}
 

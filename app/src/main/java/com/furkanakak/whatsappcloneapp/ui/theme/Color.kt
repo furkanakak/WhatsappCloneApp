@@ -71,6 +71,6 @@ val top_background = Color(0xFF232C34)
 
 
 
-val seed = Color(0xFF6CC3E)
+val white = Color(0xFFFFFFFF)
 
 
