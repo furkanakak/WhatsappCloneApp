@@ -72,5 +72,6 @@ val top_background = Color(0xFF232C34)
 
 
 val white = Color(0xFFFFFFFF)
+val soft_white = Color(0xFFDEE5D8)
 
 

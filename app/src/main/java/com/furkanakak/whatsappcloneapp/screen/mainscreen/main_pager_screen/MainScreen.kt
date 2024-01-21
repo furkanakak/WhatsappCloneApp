@@ -2,6 +2,7 @@ package com.furkanakak.whatsappcloneapp.screen.mainscreen.main_pager_screen
 
 import android.annotation.SuppressLint
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -30,7 +31,7 @@ import com.furkanakak.whatsappcloneapp.screen.mainscreen.chats_screen.ChatsScree
 @SuppressLint("UnrememberedMutableState", "UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MainScreen(navigateToChatScreen : (Int) -> Unit) {
+fun MainScreen(navigateToChatScreen : (Int) -> Unit,childView :  (String) -> Unit){
 
     var selectedTopIndex by remember  { mutableStateOf(0)}
     val list : List<String> = listOf("Chats","Status","Call")
@@ -42,6 +43,14 @@ fun MainScreen(navigateToChatScreen : (Int) -> Unit) {
     }
     LaunchedEffect(pagerState.currentPage){
         selectedTopIndex = pagerState.currentPage
+    }
+
+    LaunchedEffect(selectedTopIndex) {
+        when (selectedTopIndex) {
+            EnumAppBar.Chats.value -> childView(ChildViewEnum.Chats.value)
+            EnumAppBar.Status.value -> childView(ChildViewEnum.Status.value)
+            EnumAppBar.Calls.value -> childView(ChildViewEnum.Calls.value)
+        }
     }
 
 
@@ -57,6 +66,7 @@ fun MainScreen(navigateToChatScreen : (Int) -> Unit) {
                 when(selectedTopIndex){
 
                     EnumAppBar.Chats.value ->{
+                        Log.v("childView","2222${ChildViewEnum.Chats.value}")
                         ChatsScreen(navigateToChatScreen = { id ->
                             navigateToChatScreen(id)})
                     }
