@@ -37,7 +37,7 @@ import java.util.Random
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun RecentItem (friend : Friend) {
+fun RecentItem (friend : Friend,imageClickListener : (Friend) -> Unit){
 
     val year = Random().nextInt(2025 - 2020) + 2020
     val month = Random().nextInt(12) + 1
@@ -61,7 +61,7 @@ fun RecentItem (friend : Friend) {
             Spacer(modifier = Modifier.height(8.dp))
             Row(Modifier.fillMaxWidth()) {
                 Spacer(modifier = Modifier.width(8.dp))
-                IconButton(onClick = {}) {
+                IconButton(onClick = {imageClickListener(friend)}) {
                     GlideImage(
                         imageModel = friend.picture ?: "",
                         modifier = Modifier

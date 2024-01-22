@@ -84,14 +84,4 @@ fun MainScreen(navigateToChatScreen : (Int) -> Unit,childView :  (String) -> Uni
         }
     }, topBar = { MainScreenAppBar() })
 
-
-
-
-
-
-
-
-
-
-
 }
