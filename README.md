@@ -1,4 +1,4 @@
-# WhatsApp-Like Design Application
+# WhatsappCloneApp
 
 This project aims to clone certain pages of the popular messaging app WhatsApp, creating a similar design. It is built using modern Android application development techniques and is customized to mimic the user interface components of WhatsApp.
 
