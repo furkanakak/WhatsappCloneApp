@@ -13,3 +13,7 @@ This project aims to clone certain pages of the popular messaging app WhatsApp, 
 - **Hilt - Dagger**: Used for dependency injection, providing a consistent and manageable structure throughout the application.
 - **Kotlin Coroutine**: For managing asynchronous tasks and data flows.
 - **ViewModel - Kotlin Flows**: For managing application data and directing UI updates.
+
+## Demo
+https://github.com/furkanakak/WhatsappCloneApp/assets/80040232/54bf575d-7306-437f-a389-8bbc6d08336c
+
