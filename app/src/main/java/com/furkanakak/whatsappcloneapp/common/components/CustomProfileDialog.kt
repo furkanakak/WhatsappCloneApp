@@ -33,10 +33,11 @@ import com.furkanakak.whatsappcloneapp.data.entity.Friend
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
-fun CustomFriendDialog(
+fun CustomProfileDialog(
     showDialog: Boolean,
     onDismiss: () -> Unit,
-    dialogFriend: Friend
+    picture: String,
+    name: String
 ) {
     if (showDialog) {
         Dialog(onDismissRequest = onDismiss) {
@@ -64,7 +65,7 @@ fun CustomFriendDialog(
                 ) {
                     Box {
                         GlideImage(
-                            imageModel = dialogFriend.picture,
+                            imageModel = picture,
                             contentDescription = "Profile Image",
                             modifier = Modifier
                                 .height(250.dp).width(250.dp)
@@ -78,13 +79,12 @@ fun CustomFriendDialog(
                                 .height(35.dp)
                         ) {
                             Spacer(modifier = Modifier.width(8.dp))
-                            dialogFriend.name?.let {
                                 Text(
-                                    text = it,
+                                    text = name,
                                     fontSize = 20.sp,
                                     modifier = Modifier.align(Alignment.CenterVertically)
                                 )
-                            }
+
                         }
                     }
                     Spacer(modifier = Modifier.height(16.dp))

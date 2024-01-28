@@ -41,6 +41,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ExperimentalMotionApi
 import androidx.constraintlayout.compose.MotionLayout
 import androidx.constraintlayout.compose.MotionScene
@@ -85,22 +86,22 @@ fun ProfileScreen(selectedProfile : String?, onBackClick : () -> Unit) {
             Spacer(modifier = Modifier.height(20.dp))
             Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceAround, modifier = Modifier.width(250.dp)) {
-                    Column {
+                    Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                         IconButton(  modifier = Modifier.size(24.dp), onClick = { } ) { Icon(Icons.Filled.Call,"", tint = MaterialTheme.colorScheme.primary ,modifier = Modifier.size(25.dp))}
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = "Sesli")
+                        Text(text = "Audio")
                     }
                     Spacer(modifier = Modifier.height(24.dp))
                     Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                         IconButton(  modifier = Modifier.size(24.dp), onClick = { } ) { Icon(Icons.Default.CameraAlt,"",tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(25.dp)) }
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = "Görüntülü")
+                        Text(text = "Video")
                     }
                     Spacer(modifier = Modifier.height(24.dp))
-                    Column {
+                    Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                         IconButton(  modifier = Modifier.size(24.dp), onClick = { } ) { Icon(Icons.Default.Search,"",tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(25.dp)) }
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = "Ara")
+                        Text(text = "Search")
                     }
                 }
                 Spacer(modifier = Modifier.height(20.dp))
@@ -111,9 +112,9 @@ fun ProfileScreen(selectedProfile : String?, onBackClick : () -> Unit) {
                 .fillMaxWidth())
             Column(Modifier.padding(start = 10.dp, end = 10.dp)) {
                 Spacer(modifier = Modifier .height(16.dp))
-                Text(text = "Meşgul")
+                Text(text = "Busy",fontSize = 14.sp)
                 Spacer(modifier = Modifier .height(8.dp))
-                Text(text = "10 Kasım")
+                Text(text = "15 November",fontSize = 14.sp)
                 Spacer(modifier = Modifier .height(16.dp))
             }
             Spacer(modifier = Modifier
@@ -126,7 +127,7 @@ fun ProfileScreen(selectedProfile : String?, onBackClick : () -> Unit) {
                     Row {
                         IconButton(modifier = Modifier.size(24.dp), onClick = { } ) { Icon(painter = painterResource(id = R.drawable.ic_notifications ),"Notification",tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(25.dp)) }
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = "Bildirimleri sesize al")
+                        Text(text = "Mute notifications",fontSize = 14.sp)
                         Spacer(modifier = Modifier.width(8.dp))
                     }
                     Row {
@@ -137,13 +138,13 @@ fun ProfileScreen(selectedProfile : String?, onBackClick : () -> Unit) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     IconButton(modifier = Modifier.size(24.dp), onClick = { } ) { Icon(painter = painterResource(id = R.drawable.ic_music),"Notification",tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(25.dp)) }
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = "Özel bildirimler")
+                    Text(text = "Costum notifications",fontSize = 14.sp)
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Row(modifier = Modifier.fillMaxWidth()) {
                     IconButton(modifier = Modifier.size(24.dp), onClick = { } ) { Icon(painter = painterResource(id = R.drawable.ic_image),"Notification",tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(25.dp)) }
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = "Medya görünürlüğü")
+                    Text(text = "Media visibility",fontSize = 14.sp)
                 }
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -158,9 +159,9 @@ fun ProfileScreen(selectedProfile : String?, onBackClick : () -> Unit) {
                     Spacer(modifier = Modifier.width(8.dp))
                     Column {
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = "Şifreleme")
+                        Text(text = "Encryption",fontSize = 14.sp)
                         Spacer(modifier = Modifier.height(2.dp))
-                        Text(text = "Mesajlar ve aramalar uçtan uca şifrelidir. Doğrulamak için dokunun")
+                        Text(text = "Messages and calls are end-to-end encrypted. Tap to verify.",fontSize = 14.sp)
                     }
                 }
                 Spacer(modifier = Modifier.height(8.dp))
@@ -169,9 +170,9 @@ fun ProfileScreen(selectedProfile : String?, onBackClick : () -> Unit) {
                     Spacer(modifier = Modifier.width(8.dp))
                     Column {
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = "Süreli mesajlar")
+                        Text(text = "Disappearing messages",fontSize = 14.sp)
                         Spacer(modifier = Modifier.height(2.dp))
-                        Text(text = "Kapalı")
+                        Text(text = "Off",fontSize = 14.sp)
                     }
                 }
                 Spacer(modifier = Modifier.height(8.dp))
@@ -180,7 +181,7 @@ fun ProfileScreen(selectedProfile : String?, onBackClick : () -> Unit) {
                     Spacer(modifier = Modifier.width(8.dp))
                     Column {
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = "Sohbet kilidi")
+                        Text(text = "Chat lock",fontSize = 14.sp)
 
 
                     }
@@ -198,7 +199,7 @@ fun ProfileScreen(selectedProfile : String?, onBackClick : () -> Unit) {
                     Spacer(modifier = Modifier.width(8.dp))
                     Column {
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = "${profile?.name?:""} kişisini engelle")
+                        Text(text = "Block ${profile?.name?:""}",fontSize = 14.sp)
                     }
                 }
                 Spacer(modifier = Modifier.height(10.dp))
@@ -207,7 +208,7 @@ fun ProfileScreen(selectedProfile : String?, onBackClick : () -> Unit) {
                     Spacer(modifier = Modifier.width(8.dp))
                     Column {
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = "${profile?.name?:""} kişisini şikayet et")
+                        Text(text = "Report ${profile?.name?:""}",fontSize = 14.sp)
                     }
                 }
                 Spacer(modifier = Modifier.height(16.dp))

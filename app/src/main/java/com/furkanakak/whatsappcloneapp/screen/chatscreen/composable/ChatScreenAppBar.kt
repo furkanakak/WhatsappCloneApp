@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Videocam
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -70,7 +71,7 @@ fun ChatScreenAppBar(name :String,image : String,backTouchListener : () -> Unit,
 
         },
         actions = {
-            Icon(painter = cameraIcon, contentDescription = "more", modifier = Modifier.size(24.dp))
+            Icon(imageVector = Icons.Default.Videocam,tint = Color.White,contentDescription = "Videocam", modifier = Modifier.size(30.dp))
             Spacer(modifier = Modifier.size(24.dp))
             Icon(
                 modifier = Modifier.size(24.dp),

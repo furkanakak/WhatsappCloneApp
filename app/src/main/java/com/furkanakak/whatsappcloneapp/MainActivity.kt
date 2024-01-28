@@ -61,9 +61,6 @@ class MainActivity : ComponentActivity() {
             var isFabIcon by remember { mutableStateOf(Icons.Filled.Chat) }
             var isFabVisibility by remember { mutableStateOf(false) }
 
-
-
-
             WhatsappCloneAppTheme {
                 Box(modifier = Modifier.fillMaxSize()) {
                     Surface(
@@ -72,12 +69,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         NavGraph(navController = navController, childViewCallback = { value ->
                             Log.v("childView", "$value")
-                            fabManagement(
-                                value,
-                                setExpanded = { isExpanded = it },
-                                setFabIcon = { isFabIcon = it },
-                                setFabVisibility = { isFabVisibility = it })
-
+                            fabManagement(value, setExpanded = { isExpanded = it }, setFabIcon = { isFabIcon = it },  setFabVisibility = { isFabVisibility = it })
                         })
                     }
 

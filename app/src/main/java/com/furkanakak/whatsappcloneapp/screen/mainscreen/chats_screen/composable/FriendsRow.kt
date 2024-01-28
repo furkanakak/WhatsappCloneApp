@@ -1,6 +1,7 @@
 package com.furkanakak.whatsappcloneapp.screen.mainscreen.chats_screen.composable
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +16,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,7 +27,7 @@ import com.furkanakak.whatsappcloneapp.data.entity.FriendX
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
-fun FriendsRow(item : FriendX, onClick :  () -> Unit) {
+fun FriendsRow(item : FriendX, onClick :  () -> Unit,openDialog : (FriendX) -> Unit) {
     Card(
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background),
         modifier = Modifier
@@ -44,6 +46,11 @@ fun FriendsRow(item : FriendX, onClick :  () -> Unit) {
                         .height(40.dp)
                         .width(40.dp)
                         .clip(CircleShape)
+                        .clickable(
+                            indication = null,
+                    interactionSource = remember { MutableInteractionSource() },
+                    onClick = { openDialog(item) }
+                )
                 )
                 Spacer(modifier = Modifier.width(10.dp))
 

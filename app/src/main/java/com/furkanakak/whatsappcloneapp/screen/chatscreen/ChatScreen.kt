@@ -14,14 +14,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Face
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -32,20 +29,24 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.furkanakak.whatsappcloneapp.R
 import com.furkanakak.whatsappcloneapp.data.entity.Chatlog
 import com.furkanakak.whatsappcloneapp.data.entity.Friend
 import com.furkanakak.whatsappcloneapp.data.entity.FriendX
+import com.furkanakak.whatsappcloneapp.screen.chatscreen.composable.AttachPopupView
 import com.furkanakak.whatsappcloneapp.screen.chatscreen.composable.ChatScreenAppBar
-import com.furkanakak.whatsappcloneapp.screen.mainscreen.main_pager_screen.composable.ChatItem
 import com.furkanakak.whatsappcloneapp.screen.mainscreen.chats_screen.ChatsState
+import com.furkanakak.whatsappcloneapp.screen.mainscreen.main_pager_screen.composable.ChatItem
 import com.furkanakak.whatsappcloneapp.ui.theme.md_theme_dark_onPrimary
 import com.furkanakak.whatsappcloneapp.ui.theme.top_background
+import androidx.compose.material3.Text as hintT
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -61,6 +62,7 @@ fun ChatScreen(
     var selectedItem by remember { mutableStateOf<Friend?>(null) }
     var selectedProfile by remember { mutableStateOf<FriendX?>(null) }
     var chatList by remember { mutableStateOf<List<Chatlog>?>(null) }
+    var isAttachDialog by remember { mutableStateOf(false) }
 
 
     if (data.value.loading) {
@@ -68,12 +70,16 @@ fun ChatScreen(
             CircularProgressIndicator()
         }
     } else if (data.value.error != null) {
-        Text(text = data.value.error!!)
+        hintT(text = data.value.error!!)
     } else {
         selectedItem = data.value.success?.friends?.filter { it.id == id }?.get(0)
         chatList = selectedItem?.chatlog
     }
 
+
+    AttachPopupView(isAttachDialog, onDismiss = {
+        isAttachDialog = false
+    })
 
     Scaffold(
         content = {
@@ -95,7 +101,9 @@ fun ChatScreen(
                         .fillMaxWidth()
                         .padding(start = 8.dp, bottom = 8.dp)
                 ) {
-                    BottomMessage(Modifier.align(Alignment.BottomCenter))
+                    BottomMessage(Modifier.align(Alignment.BottomCenter)){
+                        isAttachDialog = true
+                    }
                 }
             }
         },
@@ -122,7 +130,7 @@ fun ChatScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomMessage(modifier: Modifier) {
+fun BottomMessage(modifier: Modifier,attachOnClick : () -> Unit = {}) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -138,32 +146,36 @@ fun BottomMessage(modifier: Modifier) {
             verticalAlignment = Alignment.CenterVertically
         )
         {
-            IconButton(onClick = {}) {
+            Spacer(Modifier.width(8.dp))
+            IconButton(onClick = {},Modifier.size(24.dp)) {
                 Icon(
-                    modifier = Modifier.size(24.dp),
-                    imageVector = Icons.Default.Face,
+                    painter = painterResource(id = R.drawable.ic_emoji),
                     contentDescription = "search",
                     tint = Color.LightGray
                 )
             }
-            Spacer(Modifier.width(4.dp))
+
             TextField(
-                value = "", onValueChange = {}, modifier = Modifier
-                    .weight(1f)
-                    .background(top_background),
+                value = "",
+                onValueChange = {},
+                modifier = Modifier
+                    .width(150.dp)
+                    .then(Modifier.background(top_background, RoundedCornerShape(16.dp))),
+                placeholder = { hintT("Massage", fontSize = 16.sp, color = Color.White, modifier =  Modifier.alpha(0.7f)) },
                 colors = TextFieldDefaults.textFieldColors(
-                    Color.White,
                     cursorColor = Color.Transparent,
                     errorCursorColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent,
                     errorIndicatorColor = Color.Transparent,
                     focusedPlaceholderColor = Color.Transparent,
-                    unfocusedPlaceholderColor = Color.Transparent,
                     containerColor = top_background,
-                    unfocusedIndicatorColor = Color.Transparent,
-                )
+                    unfocusedIndicatorColor = Color.Transparent
+                ),
+                shape = RoundedCornerShape(16.dp)
             )
-            IconButton(onClick = {}) {
+            IconButton(onClick = {
+                attachOnClick()
+            }) {
                 Icon(
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.ic_attach),

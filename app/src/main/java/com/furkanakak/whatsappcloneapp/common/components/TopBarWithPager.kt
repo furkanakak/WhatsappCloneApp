@@ -31,7 +31,7 @@ fun TopBarWithPager(index : Int,tabTitles : List<String> , clickItem : (Int)  ->
                             clickItem(selectedItem)
                         },
                         text = { Text(text = title, maxLines = 2, overflow = TextOverflow.Ellipsis) },
-                        selectedContentColor = top_background,
+                        selectedContentColor =  MaterialTheme.colorScheme.primary,
                         unselectedContentColor = MaterialTheme.colorScheme.primary
                     )
                 }

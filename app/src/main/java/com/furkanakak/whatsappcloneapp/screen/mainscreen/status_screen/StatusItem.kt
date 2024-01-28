@@ -75,7 +75,7 @@ fun StatusItem(friend: Friend,position: Int) {
         }
     }
     else{
-        Column(modifier = Modifier.fillMaxHeight().padding(start = 8.dp,end = 8.dp)) {
+        Column(modifier = Modifier.fillMaxHeight().padding(start = 8.dp)) {
             Column {
                 Row(
                     verticalAlignment = Alignment.CenterVertically, modifier = Modifier
@@ -91,7 +91,7 @@ fun StatusItem(friend: Friend,position: Int) {
                 }
 
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    Row(modifier = Modifier.fillMaxWidth(),verticalAlignment = Alignment.CenterVertically  ) {
+                    Row(modifier = Modifier.fillMaxWidth(),verticalAlignment = Alignment.CenterVertically) {
                         Box {
                             Image(
                                 painter = painterResource(id = R.drawable.my_profile_image),

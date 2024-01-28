@@ -18,6 +18,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.DpOffset
+import androidx.compose.ui.unit.dp
 import com.furkanakak.whatsappcloneapp.common.EnumAppBar
 import com.furkanakak.whatsappcloneapp.common.components.TopBarWithPager
 import com.furkanakak.whatsappcloneapp.screen.mainscreen.calls_screen.CallsScreen
@@ -32,10 +36,11 @@ import com.furkanakak.whatsappcloneapp.screen.mainscreen.chats_screen.ChatsScree
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreen(navigateToChatScreen : (Int) -> Unit,childView :  (String) -> Unit){
-
     var selectedTopIndex by remember  { mutableStateOf(0)}
     val list : List<String> = listOf("Chats","Status","Call")
     val pagerState = rememberPagerState(initialPage = 0)
+
+
 
 
     LaunchedEffect(selectedTopIndex){
@@ -82,6 +87,9 @@ fun MainScreen(navigateToChatScreen : (Int) -> Unit,childView :  (String) -> Uni
             }
 
         }
-    }, topBar = { MainScreenAppBar() })
+    }, topBar = {
+        MainScreenAppBar()
+    }
+    )
 
 }
